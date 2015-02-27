@@ -1,0 +1,21 @@
+{
+  "name": "genius-urbandic-youtube",
+  "version": "0.0.0",
+  "homepage": "https://github.com/Acen1991/genius-urbandic-youtube",
+  "authors": [
+    "Acen1991 <mohamedhassen-mami@hotmail.fr>"
+  ],
+  "main": "bower.json",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.2",
+    "angular-material": "~0.8.1"
+  }
+}
