@@ -26,6 +26,8 @@ node_modules
 
 client/bower_components
 
+views_html
+
 # Users Environment Variables
 .lock-wscript
 
