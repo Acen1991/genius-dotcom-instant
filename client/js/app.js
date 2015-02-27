@@ -1,23 +1,34 @@
-angular.module("genius-urban-youtube-app", [])
+angular.module("genius-urban-youtube-app", ["ngMaterial"])
 .controller('baseController', [
 	'$scope',
 	'$rootScope',
 	'$http',
 	'artistSongsService', 
 	function($scope, $rootScope,$http, artistSongsService){
+		
 		$scope.queryArtistSongs = function(){
-			artistSongsService($scope.artist);
-		}
+			artistSongsService($scope.youtubeUrlMusicClip);
+		};
 	}
 ])
-.factory('artistSongsService', ['$rootScope','$http','$window', function($scope,$http,$window){
-	return function(artist){
-		$http.post('/artistSongs', {artist : artist})
-		.success(function(data, status, headers, config){
-			$scope.listSongs = data.songs;
-		})
-		.error(function(data, status, headers, config){
-			$window.alert("error");
-		});
-	}
-}]);
+.factory('artistSongsService', ['$rootScope', '$http','$window', function($rootScope, $http,$window){
+	return function(youtubeUrlMusicClip){
+		if(youtubeUrlMusicClip !== undefined){
+			var indexOfId = youtubeUrlMusicClip.indexOf("v=");
+			var youtubeVideoId = youtubeUrlMusicClip.substring(indexOfId+2);
+			$http.post('/retrievelyricsFromYoutubeId', {youtubeVideoId : youtubeVideoId})
+			.success(function(data, status, headers, config){
+				$rootScope.data = data;
+			})
+			.error(function(data, status, headers, config){
+				$window.alert("error");
+			});
+		}
+	};
+}])
+.config( function($mdThemingProvider){
+    // Configure a dark theme with primary foreground yellow - the Genius.com theme !
+    $mdThemingProvider.theme('docs-dark', 'default')
+        .primaryPalette('yellow')
+        .dark();
+  });
