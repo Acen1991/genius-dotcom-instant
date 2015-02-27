@@ -1,0 +1,11 @@
+p {
+	color : white;
+}
+
+h1, h2, h3 {
+	color : #ffc31c
+}
+
+body, html {
+	background-color : rgb(66,66,66);
+}

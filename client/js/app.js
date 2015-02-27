@@ -3,29 +3,42 @@ angular.module("genius-urban-youtube-app", ["ngMaterial"])
 	'$scope',
 	'$rootScope',
 	'$http',
-	'artistSongsService', 
-	function($scope, $rootScope,$http, artistSongsService){
-		
+	'artistSongsService',
+	'$interval', 
+	function($scope, $rootScope, $http, artistSongsService, $interval){
+		$rootScope.toSpin = false;
 		$scope.queryArtistSongs = function(){
+			$rootScope.toSpin = true;
 			artistSongsService($scope.youtubeUrlMusicClip);
 		};
 	}
 ])
 .factory('artistSongsService', ['$rootScope', '$http','$window', function($rootScope, $http,$window){
 	return function(youtubeUrlMusicClip){
-		if(youtubeUrlMusicClip !== undefined){
+		if(youtubeUrlMusicClip === undefined && youtubeUrlMusicClip ==='')
+		{
+			$rootScope.toSpin = false;
+			return;
+		} else {
 			var indexOfId = youtubeUrlMusicClip.indexOf("v=");
+			if(indexOfId == -1){
+				$rootScope.toSpin = false;
+				return;
+			}
 			var youtubeVideoId = youtubeUrlMusicClip.substring(indexOfId+2);
 			$http.post('/retrievelyricsFromYoutubeId', {youtubeVideoId : youtubeVideoId})
 			.success(function(data, status, headers, config){
 				$rootScope.data = data;
+				$rootScope.toSpin = false;
 			})
 			.error(function(data, status, headers, config){
 				/* 
 				*	@TODO: change by a real error handler
 				*
 				*/
+				
 				$window.alert("error"); 
+				$rootScope.toSpin = false;
 			});
 		}
 	};

@@ -10,17 +10,20 @@ html(ng-app='genius-urban-youtube-app')
 			h1(layout="row", layout-align="center") Genius.com UrbanDictionnary and Youtube mashup
 			h2(layout="row", layout-align="center") welcome to my incredible project !
 
-			md-content(layout-align="center", class="md-padding", layout="row", layout-sm="column", style="font-size:1.2em")
+
+			md-content(layout-align="center", class="md-padding", layout="column", layout-sm="column", style="font-size:1.2em")
 				md-input-container(layout="row", layout-align="center")
 					input(ng-model="youtubeUrlMusicClip", ng-change="queryArtistSongs()")
 					label(layout="column")
-						| Youtube Url of the Video clip : 
-					
-			div(ng-repeat="section in data.lyricsAndExplanations.lyrics.sections",layout="column", layout-align="center")
-				h2(layout="row", layout-align="center")
-					{{section.name}}
-				p(ng-repeat="verse in section.verses",layout="row", layout-align="center")
-					{{verse.content}}
+						| Copy&Paste a rap music Youtube Url : 
+
+				md-progress-circular(class="md-hue-2", md-mode="indeterminate", ng-show="toSpin", layout-align="center", style="margin:auto")
+
+				div(ng-repeat="section in data.lyricsAndExplanations.lyrics.sections",layout="column", layout-align="center", ng-hide="toSpin")
+					h2(layout="row", layout-align="center")
+						{{section.name}}
+					p(ng-repeat="verse in section.verses",layout="row", layout-align="center")
+						{{verse.content}}
 
 		<!-- injector:js -->
 		<!-- endinjector -->
