@@ -21,12 +21,16 @@ angular.module("genius-urban-youtube-app", ["ngMaterial"])
 				$rootScope.data = data;
 			})
 			.error(function(data, status, headers, config){
-				$window.alert("error");
+				/* 
+				*	@TODO: change by a real error handler
+				*
+				*/
+				$window.alert("error"); 
 			});
 		}
 	};
 }])
-.config( function($mdThemingProvider){
+.config(function($mdThemingProvider){
     // Configure a dark theme with primary foreground yellow - the Genius.com theme !
     $mdThemingProvider.theme('docs-dark', 'default')
         .primaryPalette('yellow')

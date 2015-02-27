@@ -4,10 +4,15 @@
   var google = require('googleapis');
   var youtube = google.youtube('v3');
   var bodyParser = require('body-parser');
+  var properties = require("properties");
+ 
 
   var app = express();
 
-  var GOOGLE_API_KEY = 'AIzaSyBgispeuw_h3EvcbLjMtVDsgpXCdQji67M';
+  properties.parse("vars", { path: true, variables: true }, function (error, p){
+    if (error) return console.error (error);
+    PROPERTIES_VARIABLE = p;
+  });  
 
 
   var rootDir = __dirname + '/../';
@@ -28,9 +33,13 @@
       res.render('index.html');
   });
 
+  /* 
+   * @TODO: this controller is least robust one that I have built so far !!!
+   *
+   */
   app.post("/retrievelyricsFromYoutubeId", function(req, res) {
       youtube.videos.list({
-          auth: GOOGLE_API_KEY,
+          auth: PROPERTIES_VARIABLE.GOOGLE_API_KEY,
           id: req.body.youtubeVideoId,
           part: "id,snippet"
       }, function(err, data) {
@@ -50,7 +59,6 @@
                           res.end(JSON.stringify({
                               lyricsAndExplanations: lyricsAndExplanations
                           }));
-
                       }
                   });
               }
