@@ -5,8 +5,8 @@
   var youtube = google.youtube('v3');
   var bodyParser = require('body-parser');
   var properties = require("properties");
+  var urbanDictionnary = require('urban');
  
-
   var app = express();
 
   properties.parse("vars", { path: true, variables: true }, function (error, p){
@@ -71,11 +71,6 @@
                           res.end(JSON.stringify({error : true}));
                           return;
                       } else {
-                          var song = "Found lyrics for song [title=%s, main-artist=%s, featuring-artists=%s, producing-artists=%s]";
-                          song += "\n";
-                          song += "**** LYRICS ****";
-                          song += lyricsAndExplanations.lyrics.getFullLyrics(true);
-
                           res.end(JSON.stringify({
                               lyricsAndExplanations: lyricsAndExplanations
                           }));
