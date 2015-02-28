@@ -9,6 +9,8 @@
  
   var app = express();
 
+  app.set('port', (process.env.PORT || 5000));
+
   properties.parse("vars", { path: true, variables: true }, function (error, p){
     if (error) return console.error (error);
     PROPERTIES_VARIABLE = p;
