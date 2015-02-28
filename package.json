@@ -17,7 +17,7 @@
     "Youtube api",
     "Urban Dictionnary"
   ],
-  "dependencies" : {
+  "dependencies": {
     "body-parser": "^1.12.0",
     "ejs": "^2.3.1",
     "express": "^4.12.0",
@@ -31,7 +31,8 @@
     "natural": "^0.2.0",
     "path": "^0.11.14",
     "properties": "^1.2.1",
-    "rapgenius-js": "^0.1.2"
+    "rapgenius-js": "^0.1.2",
+    "urban": "^0.2.3"
   },
   "devDependencies": {
     "body-parser": "^1.12.0",
