@@ -18,14 +18,35 @@ angular.module("genius-urban-youtube-app", ["ngMaterial"])
 		if(youtubeUrlMusicClip === undefined && youtubeUrlMusicClip ==='')
 		{
 			$rootScope.toSpin = false;
+			//provide a more understanble message
 			return;
 		} else {
+			
+			//@TODO : Use browersify and the URL and QueryString node modules instead
+			//---- FROM HERE ---
 			var indexOfId = youtubeUrlMusicClip.indexOf("v=");
 			if(indexOfId == -1){
 				$rootScope.toSpin = false;
 				return;
 			}
-			var youtubeVideoId = youtubeUrlMusicClip.substring(indexOfId+2);
+
+			var youtubeVideoId;
+			var indexAnd;
+			if((indexAnd = youtubeUrlMusicClip.indexOf("&")) == -1){
+				youtubeVideoId = youtubeUrlMusicClip.substring(indexOfId+2);
+				console.log(youtubeVideoId);
+			} else {
+				youtubeVideoId = youtubeUrlMusicClip.substring(indexOfId+2, indexAnd);
+				console.log(youtubeVideoId);
+			}
+			//---- TO HERE ---
+
+			if(youtubeVideoId === undefined){
+				$rootScope.toSpin = false;
+				//provide a more understanble message
+				return;
+			}
+
 			$http.post('/retrievelyricsFromYoutubeId', {youtubeVideoId : youtubeVideoId})
 			.success(function(data, status, headers, config){
 				$rootScope.data = data;
@@ -36,8 +57,7 @@ angular.module("genius-urban-youtube-app", ["ngMaterial"])
 				*	@TODO: change by a real error handler
 				*
 				*/
-				
-				$window.alert("error"); 
+				$window.alert("unkown error"); 
 				$rootScope.toSpin = false;
 			});
 		}
