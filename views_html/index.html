@@ -14,7 +14,7 @@
       <md-content layout-align="center" layout="column" layout-sm="column" style="font-size:1.2em" class="md-padding">
         <md-input-container layout="row" layout-align="center">
           <input ng-model="youtubeUrlMusicClip" ng-change="queryArtistSongs()">
-          <label layout="column">Copy&Paste a rap music Youtube Url : </label>
+          <label layout="column">Copy&Paste the url of the Youtube video clip you're watching: </label>
         </md-input-container>
         <md-progress-circular md-mode="indeterminate" ng-show="toSpin" layout-align="center" style="margin:auto" class="md-hue-2"></md-progress-circular>
         <div ng-repeat="section in data.lyricsAndExplanations.lyrics.sections" layout="column" layout-align="center" ng-hide="toSpin">
