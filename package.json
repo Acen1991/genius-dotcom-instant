@@ -1,6 +1,6 @@
 {
   "name": "genius-urbandic-youtube",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "This app allows you to find the genius lyrics of the youtube video clip you are watching and get a highlight signification of expressions form urban-dictionnary",
   "main": "server/server.js",
   "scripts": {
