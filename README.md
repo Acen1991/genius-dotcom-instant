@@ -1,4 +1,4 @@
-# genius-urbandic-youtube
+# genius-dotcom-instant
 
 I built this app as I got sick from switching back and forth between Youtube and Genius.com.
 
