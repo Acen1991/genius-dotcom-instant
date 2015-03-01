@@ -1,6 +1,6 @@
 {
   "name": "genius-instant",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "This app allows you to find the genius lyrics of the youtube video clip you are watching and get a highlight signification of expressions form urban-dictionnary",
   "main": "server/server.js",
   "scripts": {
@@ -40,17 +40,17 @@
     "googleapis": "^1.1.4",
     "grunt": "^0.4.5",
     "grunt-contrib-jade": "^0.14.1",
+    "grunt-contrib-jasmine": "^0.8.2",
     "grunt-contrib-jshint": "^0.11.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-injector": "^0.6.0",
     "jade": "^1.9.2",
     "natural": "^0.2.0",
     "path": "^0.11.14",
-    "properties": "^1.2.1",
     "rapgenius-js": "^0.1.2",
-     "urban": "^0.2.3"
+    "urban": "^0.2.3"
   },
-   "engines": {
+  "engines": {
     "node": "0.10.x"
   }
 }

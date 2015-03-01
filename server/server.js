@@ -4,6 +4,7 @@
   var google = require('googleapis');
   var youtube = google.youtube('v3');
   var bodyParser = require('body-parser');
+  var nlpNode = require('natural');
   
   var app = express();
 
@@ -49,7 +50,8 @@
             return;
           }
 
-          rapgeniusClient.searchSong(normalizeYoutubeTitle(data.items[0].snippet.title), "rap", function(err, songs) {
+          var normalizedYoutubeTitle = normalizeYoutubeTitle(data.items[0].snippet.title);
+          rapgeniusClient.searchSong(normalizedYoutubeTitle, "rap", function(err, songs) {
               if (err) {
                   //@TODO: provide more comprehensible messages for client
                   res.end(JSON.stringify({error : true}));
@@ -60,7 +62,10 @@
                     res.end(JSON.stringify({error : true}));
                     return;
                   }
-                  rapgeniusClient.searchLyricsAndExplanations(songs[0].link, "rap", function(err, lyricsAndExplanations) {
+
+                  var iMostSuitable = indexMostSuitableGeniusSong(normalizedYoutubeTitle, songs);
+                  
+                  rapgeniusClient.searchLyricsAndExplanations(songs[iMostSuitable].link, "rap", function(err, lyricsAndExplanations) {
                       if (err) {
                           res.end(JSON.stringify({error : true}));
                           return;
@@ -85,6 +90,34 @@
     var weirdGeniusWords = /\(.*\)/i;
 
     youtubeTitle = youtubeTitle.replace(weirdGeniusWords, '');
+    youtubeTitle = youtubeTitle.replace(/\s\s*/, ' ');
+    youtubeTitle = youtubeTitle.trim();
 
     return youtubeTitle;
   };
+
+  /*
+  * we get the whole list of genius songs that match for our request
+  * then, we look for the song that got the least leveinstein distance with the normalized youtube title
+  */
+  var indexMostSuitableGeniusSong = function(normalizedYoutubeTitle, geniusSongs){
+    var iMinLev = 0;
+    var minLev = nlpNode.LevenshteinDistance(normalizedYoutubeTitle, geniusSongs[0].name.toLowerCase());
+
+    for(var i = 1; i < geniusSongs.length; i++){
+      var geniusSongNormalized = geniusSongs[i].name.toLowerCase().trim();
+      var currentLev = nlpNode.LevenshteinDistance(normalizedYoutubeTitle, geniusSongNormalized);
+
+      if(currentLev < minLev){
+        minLev = currentLev;
+        iMinLev = i;
+      } 
+    }
+    
+    return iMinLev; 
+  };
+
+  exports.UTILS = {
+    normalizeYoutubeTitle : normalizeYoutubeTitle,
+    indexMostSuitableGeniusSong : indexMostSuitableGeniusSong
+    };

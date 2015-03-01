@@ -44,13 +44,22 @@ module.exports = function(grunt) {
     },
     jshint: {
       all: ['Gruntfile.js', 'client/js/*.js', 'server/*.js']
-    }
+    },
+    jasmine: {
+      pivotal: {
+        src: 'server/**/*.js',
+        options: {
+          specs: 'server/spec/*-spec.js',
+        }
+      }
+    },
   });
 
   grunt.loadNpmTasks('grunt-contrib-jade');
   grunt.loadNpmTasks('grunt-injector');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-jasmine');
 
   grunt.registerTask('default', ['jade','injector', 'jshint']);
 
