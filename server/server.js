@@ -4,9 +4,7 @@
   var google = require('googleapis');
   var youtube = google.youtube('v3');
   var bodyParser = require('body-parser');
-  var properties = require("properties");
-  var urbanDictionnary = require('urban');
- 
+  
   var app = express();
 
   app.set('port', (process.env.PORT || 5000));
@@ -51,7 +49,7 @@
             return;
           }
 
-          rapgeniusClient.searchSong(data.items[0].snippet.title, "rap", function(err, songs) {
+          rapgeniusClient.searchSong(normalizeYoutubeTitle(data.items[0].snippet.title), "rap", function(err, songs) {
               if (err) {
                   //@TODO: provide more comprehensible messages for client
                   res.end(JSON.stringify({error : true}));
@@ -81,3 +79,12 @@
   app.listen(app.get('port'), function() {
     console.log("Node app is running at localhost:" + app.get('port'));
   });
+
+  var normalizeYoutubeTitle = function(youtubeTitle){
+    youtubeTitle = youtubeTitle.toLowerCase();
+    var weirdGeniusWords = /\(.*\)/i;
+
+    youtubeTitle = youtubeTitle.replace(weirdGeniusWords, '');
+
+    return youtubeTitle;
+  };
