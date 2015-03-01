@@ -59,8 +59,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-injector');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-jasmine');
-
+ 
   grunt.registerTask('default', ['jade','injector', 'jshint']);
 
 };
