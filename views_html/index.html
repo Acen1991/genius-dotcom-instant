@@ -17,6 +17,9 @@
           <label layout="column">youtube video clip url: </label>
         </md-input-container>
         <md-progress-circular md-mode="indeterminate" ng-show="toSpin" layout-align="center" style="margin:auto" class="md-hue-2"></md-progress-circular>
+        <h4 layout="row" layout-align="center" ng-show="wrongUrlFormat">the url you pasted might not be well formatted, please copy and past raw urls directly from YouTube.com </h4>
+        <h4 layout="row" layout-align="center" ng-show="unknowProblem">Unknow Problem, feel free to report this issue on Twitter @Acen_1991</h4>
+        <h4 layout="row" layout-align="center" ng-show="notFound">{{errorExplanation}}</h4>
         <div ng-repeat="section in data.lyricsAndExplanations.lyrics.sections" layout="column" layout-align="center" ng-hide="toSpin">
           <h2 layout="row" layout-align="center">{{section.name}}</h2>
           <p ng-repeat="verse in section.verses" layout="row" layout-align="center">{{verse.content}}</p>

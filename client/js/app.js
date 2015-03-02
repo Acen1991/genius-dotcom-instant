@@ -27,6 +27,7 @@ angular.module("genius-urban-youtube-app", ["ngMaterial"])
 			var indexOfId = youtubeUrlMusicClip.indexOf("v=");
 			if(indexOfId == -1){
 				$rootScope.toSpin = false;
+				$rootScope.wrongUrlFormat = true;
 				return;
 			}
 
@@ -34,23 +35,27 @@ angular.module("genius-urban-youtube-app", ["ngMaterial"])
 			var indexAnd;
 			if((indexAnd = youtubeUrlMusicClip.indexOf("&")) == -1){
 				youtubeVideoId = youtubeUrlMusicClip.substring(indexOfId+2);
-				console.log(youtubeVideoId);
 			} else {
 				youtubeVideoId = youtubeUrlMusicClip.substring(indexOfId+2, indexAnd);
-				console.log(youtubeVideoId);
 			}
 			//---- TO HERE ---
 
 			if(youtubeVideoId === undefined){
 				$rootScope.toSpin = false;
 				//provide a more understanble message
+				$rootScope.unknowProblem = true;
 				return;
 			}
 
 			$http.post('/retrievelyricsFromYoutubeId', {youtubeVideoId : youtubeVideoId})
 			.success(function(data, status, headers, config){
-				$rootScope.data = data;
-				$rootScope.toSpin = false;
+				if(data.error){
+					$rootScope.notFound = true;
+					$rootScope.errorExplanation = data.explanation;
+				} else {
+					$rootScope.data = data;
+					$rootScope.toSpin = false;
+				}
 			})
 			.error(function(data, status, headers, config){
 				/* 

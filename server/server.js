@@ -40,26 +40,22 @@
           part: "id,snippet"
       }, function(err, data) {
          if(err) {
-          //@TODO: provide more comprehensible messages for client
-            res.end(JSON.stringify({error : true}));
+            res.end(JSON.stringify({error : true, explanation: "can't find the youtube video provided"}));
             return;
           }
           if(data.items === undefined || data.items === null){
-            //@TODO: provide more comprehensible messages for client
-            res.end(JSON.stringify({error : true}));
+            res.end(JSON.stringify({error : true, explanation : "unknow error from Youtube"}));
             return;
           }
 
           var normalizedYoutubeTitle = normalizeYoutubeTitle(data.items[0].snippet.title);
           rapgeniusClient.searchSong(normalizedYoutubeTitle, "rap", function(err, songs) {
               if (err) {
-                  //@TODO: provide more comprehensible messages for client
-                  res.end(JSON.stringify({error : true}));
+                  res.end(JSON.stringify({error : true, explanation : "problem with the Genius.com API"}));
                   return;
               } else {
-                  if(songs[0] === undefined || songs[0] === null){
-                    //@TODO: provide more comprehensible messages for client
-                    res.end(JSON.stringify({error : true}));
+                  if(songs===undefined || songs[0] === undefined || songs[0] === null){
+                    res.end(JSON.stringify({error : true, explanation : "can't find any lyrics for the youtube link provided"}));
                     return;
                   }
 
@@ -67,7 +63,7 @@
                   
                   rapgeniusClient.searchLyricsAndExplanations(songs[iMostSuitable].link, "rap", function(err, lyricsAndExplanations) {
                       if (err) {
-                          res.end(JSON.stringify({error : true}));
+                          res.end(JSON.stringify({error : true, explanation: "can't find the lyrics for the youtube link provided"}));
                           return;
                       } else {
                           res.end(JSON.stringify({
