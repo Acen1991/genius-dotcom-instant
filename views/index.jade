@@ -19,14 +19,8 @@ html(ng-app='genius-urban-youtube-app')
 
 				md-progress-circular(class="md-hue-2", md-mode="indeterminate", ng-show="toSpin", layout-align="center", style="margin:auto")
 
-				h4(layout="row", layout-align="center", ng-show="wrongUrlFormat")
-					| the url you pasted might not be well formatted, please copy and past raw urls directly from YouTube.com 
-
-				h4(layout="row", layout-align="center", ng-show="unknowProblem")
-					| Unknow Problem, feel free to report this issue on Twitter @Acen_1991
-
-				h4(layout="row", layout-align="center", ng-show="notFound")
-					| {{errorExplanation}}
+				h4(layout="row", layout-align="center", ng-show="doFail")
+					| {{failExplanation}}
 
 				div(ng-repeat="section in data.lyricsAndExplanations.lyrics.sections",layout="column", layout-align="center", ng-hide="toSpin")
 					h2(layout="row", layout-align="center")

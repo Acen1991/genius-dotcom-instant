@@ -43,8 +43,8 @@
             res.end(JSON.stringify({error : true, explanation: "can't find the youtube video provided"}));
             return;
           }
-          if(data.items === undefined || data.items === null){
-            res.end(JSON.stringify({error : true, explanation : "unknow error from Youtube"}));
+          if(data.items === undefined || data.items === null || data.items[0] === undefined || data.items[0] === null){
+            res.end(JSON.stringify({error : true, explanation : "unknow Youtube video, please double check the URL provided"}));
             return;
           }
 

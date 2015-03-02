@@ -18,7 +18,6 @@ angular.module("genius-urban-youtube-app", ["ngMaterial"])
 		if(youtubeUrlMusicClip === undefined && youtubeUrlMusicClip ==='')
 		{
 			$rootScope.toSpin = false;
-			//provide a more understanble message
 			return;
 		} else {
 			
@@ -27,9 +26,12 @@ angular.module("genius-urban-youtube-app", ["ngMaterial"])
 			var indexOfId = youtubeUrlMusicClip.indexOf("v=");
 			if(indexOfId == -1){
 				$rootScope.toSpin = false;
-				$rootScope.wrongUrlFormat = true;
+				$rootScope.doFail = true;
+				$rootScope.failExplanation = "The url you pasted might not be well formatted, please copy and past raw urls directly from YouTube.com";
 				return;
 			}
+
+			$rootScope.doFail = false;
 
 			var youtubeVideoId;
 			var indexAnd;
@@ -43,26 +45,34 @@ angular.module("genius-urban-youtube-app", ["ngMaterial"])
 			if(youtubeVideoId === undefined){
 				$rootScope.toSpin = false;
 				//provide a more understanble message
-				$rootScope.unknowProblem = true;
+				$rootScope.doFail = true;
+				$rootScope.failExplanation = "Unknow Problem, feel free to report this issue on Twitter @Acen_1991";
 				return;
 			}
+
+			$rootScope.doFail = false;	
 
 			$http.post('/retrievelyricsFromYoutubeId', {youtubeVideoId : youtubeVideoId})
 			.success(function(data, status, headers, config){
 				if(data.error){
-					$rootScope.notFound = true;
-					$rootScope.errorExplanation = data.explanation;
+					$rootScope.doFail = true;
+					$rootScope.failExplanation = data.explanation;
 				} else {
+					$rootScope.doFail = false;
 					$rootScope.data = data;
-					$rootScope.toSpin = false;
 				}
+
+				$rootScope.toSpin = false;
 			})
 			.error(function(data, status, headers, config){
 				/* 
 				*	@TODO: change by a real error handler
 				*
 				*/
-				$window.alert("unkown error"); 
+				console.log(status);
+				
+				$rootScope.doFail = false;
+				$rootScope.failExplanation = status;
 				$rootScope.toSpin = false;
 			});
 		}
