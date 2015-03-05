@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server/server.js"
   },
-  "author": "Acen1991",
+  "author": "Acen1991 <mohamedhassen.mami@gmail.com>",
   "license": "ISC",
   "repository": {
     "type": "git",
