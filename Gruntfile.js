@@ -53,13 +53,24 @@ module.exports = function(grunt) {
         }
       }
     },
+    uglify: {
+        options: {
+          mangle: false
+        },
+        my_target: {
+          files: {
+            'client/js/app.min.js': ['client/js/app.js']
+          }
+        }
+      },
   });
 
   grunt.loadNpmTasks('grunt-contrib-jade');
   grunt.loadNpmTasks('grunt-injector');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
  
-  grunt.registerTask('default', ['jade','injector', 'jshint']);
+  grunt.registerTask('default', ['jade','injector', 'jshint', 'uglify']);
 
 };
