@@ -2,10 +2,23 @@ p {
 	color : white;
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3 {
 	color : #ffc31c
+}
+
+._failure_message {
+	color : red;
 }
 
 body, html {
 	background-color : rgb(66,66,66);
+}
+
+._genius_verses{
+	white-space:pre-wrap;
+}
+
+
+._genius_sections{
+
 }

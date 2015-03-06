@@ -11,16 +11,16 @@
     <div ng-controller="baseController" layout="column" layout-align="center" flex layout-margin>
       <h1 layout="row" layout-align="center">Genius.com Instant</h1>
       <h2 layout="row" layout-align="center">welcome to my incredible project ! (under construction)</h2>
-      <md-content layout-align="center" layout="column" layout-sm="column" style="font-size:1.2em" class="md-padding">
+      <md-content layout-align="left" layout="column" layout-sm="column" style="font-size:1.2em" class="md-padding">
         <md-input-container layout="row" layout-align="center">
           <input ng-model="youtubeUrlMusicClip" ng-change="queryArtistSongs()">
           <label layout="column">youtube video clip url: </label>
         </md-input-container>
         <md-progress-circular md-mode="indeterminate" ng-show="toSpin" layout-align="center" style="margin:auto" class="md-hue-2"></md-progress-circular>
-        <h4 layout="row" layout-align="center" ng-show="doFail">{{failExplanation}}</h4>
-        <div ng-repeat="section in data.lyricsAndExplanations.lyrics.sections" layout="column" layout-align="center" ng-hide="toSpin">
-          <h2 layout="row" layout-align="center">{{section.name}}</h2>
-          <p ng-repeat="verse in section.verses" layout="row" layout-align="center">{{verse.content}}</p>
+        <h4 layout="row" layout-align="center" ng-show="doFail" class="_failure_message">{{failExplanation}}</h4>
+        <div ng-repeat="section in lyricsAndExplanations.lyrics.sections" layout="column" layout-align="center" ng-hide="toSpin" class="_genius_sections">
+          <h2 layout="row" layout-align="center">{{section.name|normalizeFilter}}</h2>
+          <md-button ng-repeat="verse in section.verses" ng-mouseenter="showAlertttt($event, verse)" ng-click="showAlert($event, verse)" layout="row" layout-align="center" class="_genius_verses md-primary">{{verse.content|normalizeFilter}}</md-button>
         </div>
       </md-content>
     </div><!-- injector:js -->

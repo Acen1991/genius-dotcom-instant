@@ -5,11 +5,33 @@ angular.module("genius-urban-youtube-app", ["ngMaterial"])
 	'$http',
 	'artistSongsService',
 	'$interval', 
-	function($scope, $rootScope, $http, artistSongsService, $interval){
+	'$mdDialog',
+	function($scope, $rootScope, $http, artistSongsService, $interval, $mdDialog){
 		$rootScope.toSpin = false;
 		$scope.queryArtistSongs = function(){
 			$rootScope.toSpin = true;
 			artistSongsService($scope.youtubeUrlMusicClip);
+		};
+
+		$scope.showAlert = function(ev, verse){
+			var annotation = findAnnotationById(verse.id);
+			if(annotation){
+				$mdDialog.show(
+				$mdDialog.alert()
+					.theme('docs-dark')
+			        .title(verse.content)
+			        .content(annotation)
+			        .ariaLabel('Password notification')
+			        .ok('Got it!')
+			        .targetEvent(ev)
+			        
+			    );
+			    
+			}
+		};
+
+		var findAnnotationById = function(id){
+			return $rootScope.lyricsAndExplanations.explanations[id];
 		};
 	}
 ])
@@ -59,7 +81,7 @@ angular.module("genius-urban-youtube-app", ["ngMaterial"])
 					$rootScope.failExplanation = data.explanation;
 				} else {
 					$rootScope.doFail = false;
-					$rootScope.data = data;
+					$rootScope.lyricsAndExplanations = data.lyricsAndExplanations;
 				}
 
 				$rootScope.toSpin = false;
@@ -83,4 +105,10 @@ angular.module("genius-urban-youtube-app", ["ngMaterial"])
     $mdThemingProvider.theme('docs-dark', 'default')
         .primaryPalette('yellow')
         .dark();
-  });
+  })
+.filter('normalizeFilter', function() {
+  return function(text) {
+  	if(text!==undefined) return text.trim();
+  	else return text;
+  };
+});

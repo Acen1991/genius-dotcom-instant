@@ -11,7 +11,7 @@ html(ng-app='genius-urban-youtube-app')
 			h1(layout="row", layout-align="center") Genius.com Instant
 			h2(layout="row", layout-align="center") welcome to my incredible project ! (under construction)
 
-			md-content(layout-align="center", class="md-padding", layout="column", layout-sm="column", style="font-size:1.2em")
+			md-content(layout-align="left", class="md-padding", layout="column", layout-sm="column", style="font-size:1.2em")
 				md-input-container(layout="row", layout-align="center")
 					input(ng-model="youtubeUrlMusicClip", ng-change="queryArtistSongs()")
 					label(layout="column")
@@ -19,14 +19,14 @@ html(ng-app='genius-urban-youtube-app')
 
 				md-progress-circular(class="md-hue-2", md-mode="indeterminate", ng-show="toSpin", layout-align="center", style="margin:auto")
 
-				h4(layout="row", layout-align="center", ng-show="doFail")
+				h4(layout="row", layout-align="center", ng-show="doFail", class="_failure_message")
 					| {{failExplanation}}
 
-				div(ng-repeat="section in data.lyricsAndExplanations.lyrics.sections",layout="column", layout-align="center", ng-hide="toSpin")
+				div(ng-repeat="section in lyricsAndExplanations.lyrics.sections",layout="column", layout-align="center", ng-hide="toSpin", class="_genius_sections")
 					h2(layout="row", layout-align="center")
-						{{section.name}}
-					p(ng-repeat="verse in section.verses",layout="row", layout-align="center")
-						{{verse.content}}
+						{{section.name|normalizeFilter}}
+					md-button(ng-repeat="verse in section.verses", ng-mouseenter="showAlertttt($event, verse)",  ng-click="showAlert($event, verse)", layout="row", layout-align="center", class="_genius_verses md-primary")
+						{{verse.content|normalizeFilter}}
 
 		<!-- injector:js -->
 		<!-- endinjector -->
