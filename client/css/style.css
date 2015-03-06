@@ -20,5 +20,15 @@ body, html {
 
 
 ._genius_sections{
+	width: 50%;
+}
 
+md-dialog {
+	width: 85%;
+	margin-left : 55%;
+	margin-top: 20%;
+}
+
+md-dialog md-content {
+	width : 60%;
 }

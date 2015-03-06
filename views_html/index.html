@@ -12,15 +12,15 @@
       <h1 layout="row" layout-align="center">Genius.com Instant</h1>
       <h2 layout="row" layout-align="center">welcome to my incredible project ! (under construction)</h2>
       <md-content layout-align="left" layout="column" layout-sm="column" style="font-size:1.2em" class="md-padding">
-        <md-input-container layout="row" layout-align="center">
+        <md-input-container layout="row" layout-align="left">
           <input ng-model="youtubeUrlMusicClip" ng-change="queryArtistSongs()">
           <label layout="column">youtube video clip url: </label>
         </md-input-container>
-        <md-progress-circular md-mode="indeterminate" ng-show="toSpin" layout-align="center" style="margin:auto" class="md-hue-2"></md-progress-circular>
-        <h4 layout="row" layout-align="center" ng-show="doFail" class="_failure_message">{{failExplanation}}</h4>
-        <div ng-repeat="section in lyricsAndExplanations.lyrics.sections" layout="column" layout-align="center" ng-hide="toSpin" class="_genius_sections">
-          <h2 layout="row" layout-align="center">{{section.name|normalizeFilter}}</h2>
-          <md-button ng-repeat="verse in section.verses" ng-mouseenter="showAlertttt($event, verse)" ng-click="showAlert($event, verse)" layout="row" layout-align="center" class="_genius_verses md-primary">{{verse.content|normalizeFilter}}</md-button>
+        <md-progress-circular md-mode="indeterminate" ng-show="toSpin" layout-align="left" style="margin:auto" class="md-hue-2"></md-progress-circular>
+        <h4 layout="row" layout-align="left" ng-show="doFail" class="_failure_message">{{failExplanation}}</h4>
+        <div ng-repeat="section in lyricsAndExplanations.lyrics.sections" layout="column" layout-align="left" ng-hide="toSpin" class="_genius_sections">
+          <h2 layout="row" layout-align="left">{{section.name|normalizeFilter}}</h2>
+          <md-button flex ng-repeat="verse in section.verses" ng-mouseenter="showAlertt($event, verse)" ng-click="showAlert($event, verse)" layout="row" layout-align="left" class="_genius_verses md-primary">{{verse.content|normalizeFilter}}</md-button>
         </div>
       </md-content>
     </div><!-- injector:js -->

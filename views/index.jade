@@ -12,20 +12,20 @@ html(ng-app='genius-urban-youtube-app')
 			h2(layout="row", layout-align="center") welcome to my incredible project ! (under construction)
 
 			md-content(layout-align="left", class="md-padding", layout="column", layout-sm="column", style="font-size:1.2em")
-				md-input-container(layout="row", layout-align="center")
+				md-input-container(layout="row", layout-align="left")
 					input(ng-model="youtubeUrlMusicClip", ng-change="queryArtistSongs()")
 					label(layout="column")
 						| youtube video clip url: 
 
-				md-progress-circular(class="md-hue-2", md-mode="indeterminate", ng-show="toSpin", layout-align="center", style="margin:auto")
+				md-progress-circular(class="md-hue-2", md-mode="indeterminate", ng-show="toSpin", layout-align="left", style="margin:auto")
 
-				h4(layout="row", layout-align="center", ng-show="doFail", class="_failure_message")
+				h4(layout="row", layout-align="left", ng-show="doFail", class="_failure_message")
 					| {{failExplanation}}
 
-				div(ng-repeat="section in lyricsAndExplanations.lyrics.sections",layout="column", layout-align="center", ng-hide="toSpin", class="_genius_sections")
-					h2(layout="row", layout-align="center")
+				div(ng-repeat="section in lyricsAndExplanations.lyrics.sections",layout="column", layout-align="left", ng-hide="toSpin", class="_genius_sections")
+					h2(layout="row", layout-align="left")
 						{{section.name|normalizeFilter}}
-					md-button(ng-repeat="verse in section.verses", ng-mouseenter="showAlertttt($event, verse)",  ng-click="showAlert($event, verse)", layout="row", layout-align="center", class="_genius_verses md-primary")
+					md-button(flex,ng-repeat="verse in section.verses", ng-mouseenter="showAlertt($event, verse)",  ng-click="showAlert($event, verse)", layout="row", layout-align="left", class="_genius_verses md-primary")
 						{{verse.content|normalizeFilter}}
 
 		<!-- injector:js -->

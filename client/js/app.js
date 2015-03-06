@@ -17,16 +17,15 @@ angular.module("genius-urban-youtube-app", ["ngMaterial"])
 			var annotation = findAnnotationById(verse.id);
 			if(annotation){
 				$mdDialog.show(
-				$mdDialog.alert()
+					$mdDialog.alert()
 					.theme('docs-dark')
 			        .title(verse.content)
 			        .content(annotation)
 			        .ariaLabel('Password notification')
 			        .ok('Got it!')
+			        .disableParentScroll(false)//.hasBackdrop(false)
 			        .targetEvent(ev)
-			        
 			    );
-			    
 			}
 		};
 
