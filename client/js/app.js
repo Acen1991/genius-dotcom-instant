@@ -107,7 +107,12 @@ angular.module("genius-urban-youtube-app", ["ngMaterial"])
   })
 .filter('normalizeFilter', function() {
   return function(text) {
-  	if(text!==undefined) return text.trim();
-  	else return text;
+  	if(text!==undefined) {
+  		var formattedText = text.trim();
+  		formattedText = formattedText.replace('\s+',' ');
+  		formattedText = formattedText.replace('\t+',' ');
+
+  		return formattedText;
+  	}
   };
 });
