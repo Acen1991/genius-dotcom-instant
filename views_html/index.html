@@ -20,7 +20,8 @@
         <h4 layout="row" layout-align="left" ng-show="doFail" class="_failure_message">{{failExplanation}}</h4>
         <div ng-repeat="section in lyricsAndExplanations.lyrics.sections" layout="column" layout-align="left" ng-hide="toSpin" class="_genius_sections">
           <h2 layout="row" layout-align="left">{{section.name|normalizeFilter}}</h2>
-          <md-button flex ng-repeat="verse in section.verses" ng-mouseenter="showAlertt($event, verse)" ng-click="showAlert($event, verse)" layout="row" layout-align="left" class="_genius_verses md-primary">{{verse.content|normalizeFilter}}</md-button>
+          <md-button flex ng-repeat="verse in section.verses" ng-if="lyricsAndExplanations.explanations[verse.id]!==undefined &amp;&amp; lyricsAndExplanations.explanations[verse.id]!==''" ng-mouseenter="showAlertt($event, verse)" ng-click="showAlert($event, verse)" layout="row" layout-align="left" class="_genius_verses md-primary">{{verse.content|normalizeFilter}}</md-button>
+          <p flex ng-repeat="verse in section.verses" ng-if="lyricsAndExplanations.explanations[verse.id]===undefined || lyricsAndExplanations.explanations[verse.id]===''" layout="row" layout-align="left" class="_genius_verses">{{verse.content|normalizeFilter}}</p>
         </div>
       </md-content>
     </div><!-- injector:js -->

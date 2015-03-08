@@ -111,6 +111,7 @@ angular.module("genius-urban-youtube-app", ["ngMaterial"])
   		var formattedText = text.trim();
   		formattedText = formattedText.replace('\s+',' ');
   		formattedText = formattedText.replace('\t+',' ');
+  		formattedText = formattedText.toUpperCase();
 
   		return formattedText;
   	}
