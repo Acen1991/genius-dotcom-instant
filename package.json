@@ -1,6 +1,6 @@
 {
   "name": "genius-instant",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "This app allows you to find the genius lyrics of the youtube video clip you are watching and get a highlight signification of expressions form urban-dictionnary",
   "main": "server/server.js",
   "scripts": {
