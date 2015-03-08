@@ -5,7 +5,10 @@ html(ng-app='genius-urban-youtube-app')
 		<!-- endinjector -->
 
 		link(rel='stylesheet', href='css/style.css')
-		
+
+		<!-- injector:js -->
+		<!-- endinjector -->
+
 	body(md-theme="docs-dark", flex)
 		div(ng-controller="baseController", layout="column", layout-align="center", flex, layout-margin)
 			h1(layout="row", layout-align="center") Genius.com Instant
@@ -28,10 +31,5 @@ html(ng-app='genius-urban-youtube-app')
 					md-button(flex,ng-repeat="verse in section.verses", ng-mouseenter="showAlertt($event, verse)",  ng-click="showAlert($event, verse)", layout="row", layout-align="left", class="_genius_verses md-primary")
 						{{verse.content|normalizeFilter}}
 
-		<!-- injector:js -->
-		<!-- endinjector -->
-
 		script(src='js/app.min.js')
-
-
-
+		script(src='js/analytics.js')

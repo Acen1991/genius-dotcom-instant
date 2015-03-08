@@ -35,7 +35,7 @@ module.exports = function(grunt) {
         }
      }, 
      js : {
-        files : ['Gruntfile.js', 'client/js/*.js','!client/js/*.min.js', 'server/*.js'],
+        files : ['Gruntfile.js', 'client/js/app.js', 'server/*.js'],
         tasks : ['jshint'],
         options : {
           spaws : false
@@ -43,7 +43,7 @@ module.exports = function(grunt) {
      }
     },
     jshint: {
-      all: ['Gruntfile.js', 'client/js/*.js', '!client/js/*.min.js','server/*.js']
+      all: ['Gruntfile.js', 'client/js/app.js', 'server/*.js']
     },
     jasmine: {
       pivotal: {
