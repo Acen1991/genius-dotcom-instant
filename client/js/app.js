@@ -23,7 +23,7 @@ angular.module("genius-urban-youtube-app", ["ngMaterial"])
 			        .content(annotation)
 			        .ariaLabel('Password notification')
 			        .ok('Got it!')
-			        .disableParentScroll(false)//.hasBackdrop(false)
+			        .disableParentScroll(false).hasBackdrop(false)
 			        .targetEvent(ev)
 			    );
 			}

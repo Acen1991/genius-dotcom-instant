@@ -40,7 +40,14 @@ module.exports = function(grunt) {
         options : {
           spaws : false
         }
-     }
+     },
+      uglify: {
+        files : ['client/js/app.js'],
+        tasks : ['uglify'],
+        options : {
+          spawns : false
+        }
+      },
     },
     jshint: {
       all: ['Gruntfile.js', 'client/js/app.js', 'server/*.js']

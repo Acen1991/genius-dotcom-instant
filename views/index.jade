@@ -3,7 +3,8 @@ html(ng-app='genius-urban-youtube-app')
 	head
 		<!-- injector:css -->
 		<!-- endinjector -->
-
+		<!-- injector:js -->
+		<!-- endinjector -->
 		link(rel='stylesheet', href='css/style.css')
 
 	body(md-theme="docs-dark", flex)
@@ -30,7 +31,5 @@ html(ng-app='genius-urban-youtube-app')
 					p(flex,ng-repeat="verse in section.verses",ng-if="lyricsAndExplanations.explanations[verse.id]===undefined || lyricsAndExplanations.explanations[verse.id]===''", layout="row", layout-align="left", class="_genius_verses")
 						{{verse.content|normalizeFilter}}
 
-		<!-- injector:js -->
-		<!-- endinjector -->
 		script(src='js/app.min.js')
 		script(src='js/analytics.js')
