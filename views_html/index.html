@@ -21,7 +21,7 @@
       <h2 layout="row" layout-align="center">welcome to my incredible project ! (under construction)</h2>
       <md-content layout-align="left" layout="column" layout-sm="column" style="font-size:1.2em" class="md-padding">
         <md-input-container layout="row" layout-align="left">
-          <input ng-model="youtubeUrlMusicClip" ng-change="queryArtistSongs()">
+          <input ng-model="youtubeUrlMusicClip" ng-change="queryArtistSongs()" autofocus>
           <label layout="column">youtube video clip url: </label>
         </md-input-container>
         <md-progress-circular md-mode="indeterminate" ng-show="toSpin" layout-align="left" style="margin:auto" class="md-hue-2"></md-progress-circular>
