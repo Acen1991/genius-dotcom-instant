@@ -23,7 +23,7 @@ angular.module("genius-urban-youtube-app", ["ngMaterial"])
 			        .content(annotation)
 			        .ariaLabel('Password notification')
 			        .ok('Got it!')
-			        .disableParentScroll(false).hasBackdrop(false)
+			        .disableParentScroll(false).hasBackdrop(true)
 			        .targetEvent(ev)
 			    );
 			}
@@ -34,7 +34,7 @@ angular.module("genius-urban-youtube-app", ["ngMaterial"])
 		};
 	}
 ])
-.factory('artistSongsService', ['$rootScope', '$http','$window', function($rootScope, $http,$window){
+.factory('artistSongsService', ['$rootScope', '$http','$window', function($rootScope, $http, $window){
 	return function(youtubeUrlMusicClip){
 		if(youtubeUrlMusicClip === undefined && youtubeUrlMusicClip ==='')
 		{
