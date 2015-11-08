@@ -6,7 +6,7 @@ I built this app as I got sick from switching back and forth between Youtube and
 
 @TODO: improving the search feature to get the maximum right lyrics
 
-@TODO: displaying genius annotations with a mouseover effect (else I wouldn't call it "genius-instant" :P)
+@TODO: introduce a type as you search feature
 
 @TODO: parsing the lyrics and binding the words/expressions with their urbandictionnary meaning
 
