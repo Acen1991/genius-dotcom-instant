@@ -4,7 +4,7 @@ I built this app as I got sick from switching back and forth between Youtube and
 
 >>>Test it here [https://genius-instant.herokuapp.com/](https://genius-instant.herokuapp.com/)
 
-@TODO: improving the search feature to get the right lyrics (it works only for few limited examples)
+@TODO: improving the search feature to get the maximum right lyrics
 
 @TODO: displaying genius annotations with a mouseover effect (else I wouldn't call it "genius-instant" :P)
 
