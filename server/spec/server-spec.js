@@ -1,8 +1,8 @@
-var coreModule = require("../server");
+var nlpModule = require("../nlpModule");
  
 describe("normalize youtube title for genius.com API", function () {
   it("should removing weird words for Genius.com API to keep a simple title that holds : ARTISTS + SONG, whatever the semantic pattern", function () {
-    var normalizedYoutubeTitle = coreModule.UTILS.normalizeYoutubeTitle("ILOVEMAKONNEN (FEAT. DRAKE) - TUESDAY     ");
+    var normalizedYoutubeTitle = nlpModule.normalizeYoutubeTitle("ILOVEMAKONNEN (FEAT. DRAKE) - TUESDAY     ");
     expect(normalizedYoutubeTitle).toBe('ilovemakonnen - tuesday');
   });
 });
@@ -23,12 +23,12 @@ var beyonceSevenEleven = [
 
 describe("find the genius.com title that got the least leveinstein distance from the youtube video title", function () {
   it("should return the second element of the array", function () {
-    var indexMinLev = coreModule.UTILS.indexMostSuitableGeniusSong('ilovemakonnen - tuesday', drakeTuesday);
+    var indexMinLev = nlpModule.indexMostSuitableGeniusSong('ilovemakonnen - tuesday', drakeTuesday);
     expect(indexMinLev).toBe(1);
   });
 
    it("should return the first element of the array", function () {
-    var indexMinLev = coreModule.UTILS.indexMostSuitableGeniusSong('beyoncé - 7/11', beyonceSevenEleven);
+    var indexMinLev = nlpModule.indexMostSuitableGeniusSong('beyoncé - 7/11', beyonceSevenEleven);
     expect(indexMinLev).toBe(0);
   });
 });

@@ -29,3 +29,6 @@ node_module
 
 # Heroku Unvironment Variables
 .env
+
+#gerenareted html from jade grunt-contrib plugin
+views_html

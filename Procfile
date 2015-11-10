@@ -1,2 +1,2 @@
-web: node server/server.js
+web: grunt watch & node server/server.js
 
