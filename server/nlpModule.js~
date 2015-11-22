@@ -1,5 +1,8 @@
-exports.normalizeYoutubeTitle = normalizeYoutubeTitle;
-exports.indexMostSuitableGeniusSong = indexMostSuitableGeniusSong;
+module.exports = {
+    normalizeYoutubeTitle: normalizeYoutubeTitle,
+    indexMostSuitableGeniusSong: indexMostSuitableGeniusSong
+};
+
 
 var nlpNode = require('natural');
 
